@@ -20,11 +20,28 @@
   text-align: center;
   line-height: 20px;
   border-radius: 10px;
+  text-shadow: -1px -1px 0 #ffffff;
+  background: rgba(0, 0, 0, 0.2);
+}
+.displayArea {
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 100px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 5;
+  margin-left: -10px;
+  margin-top: -250px;
 }
 .hour {
   width: 500px;
   height: 500px;
-  background: #ad1938;
+  background: url("../img/hour_bg.png") no-repeat;
+  background-position: center center;
+  background-size: cover;
   z-index: 0;
   margin-left: -250px;
   margin-top: -250px;
@@ -36,6 +53,9 @@
   z-index: 1;
   margin-left: -200px;
   margin-top: -200px;
+  background: url("../img/min_bg.png") no-repeat;
+  background-position: center center;
+  background-size: contain;
 }
 .second {
   width: 300px;
@@ -44,4 +64,7 @@
   z-index: 2;
   margin-left: -150px;
   margin-top: -150px;
+  background: url("../img/sec_bg.png") no-repeat;
+  background-position: center center;
+  background-size: cover;
 }

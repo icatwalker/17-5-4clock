@@ -1,10 +1,12 @@
 @hours_width:500px;
-@hours_color:#AD1938;
+@hours_color:#fff;
 @mins_width:.8*@hours_width;
 @mins_color:#A19A94;
 @seconds_width:.6*@hours_width;
 @seconds_color:#A42034;
-.hour,.mins,.second{
+@display_area_width:20px;
+@display_area_height:@display_area_width*5;
+.hour,.mins,.second,{
   position: absolute;
   border-radius: 50%;
   top:50%;
@@ -24,17 +26,32 @@
     text-align: center;
     line-height: 20px;
     border-radius: 10px;
-    //background: #fff;
+    text-shadow: -1px -1px 0 rgba(255,255,255,1);
+    background: rgba(0,0,0,.2);
   }
+}
+.displayArea{
+  position: absolute;
+  border-radius: .5*@display_area_width;
+  top:50%;
+  left:50%;
+  width: @display_area_width;
+  height: @display_area_height;
+  border: 1px solid #fff;
+  background: rgba(255,255,255,.5);
+  z-index: 5;
+  margin-left:-.5*@display_area_width;
+  margin-top:-2.5*@display_area_height;
 }
 .hour{
   width: @hours_width;
   height: @hours_width;
-  background: @hours_color;
+  background: url("../img/hour_bg.png") no-repeat;
+  background-position: center center;
+  background-size: cover;
   z-index: 0;
   margin-left:-.5*@hours_width;
   margin-top:-.5*@hours_width;
-
 }
 .mins{
   width: @mins_width;
@@ -43,6 +60,9 @@
   z-index: 1;
   margin-left:-.5*@mins_width;
   margin-top:-.5*@mins_width;
+  background: url("../img/min_bg.png") no-repeat;
+  background-position: center center;
+  background-size: contain;
 }
 .second{
   width: @seconds_width;
@@ -51,4 +71,7 @@
   z-index: 2;
   margin-left:-.5*@seconds_width;
   margin-top:-.5*@seconds_width;
+  background: url("../img/sec_bg.png") no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
