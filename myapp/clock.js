@@ -21,15 +21,69 @@ arrangePoint(".hour",12,1,1);
 arrangePoint(".mins",60,-1,1);
 arrangePoint(".second",6,1,10);
 
+
+
 //arrangePoint(".second",60,1);
 
 var timer=null;
+function beginMove(){
+    var begin_second=new Date().getSeconds();
+    var begin_min=new Date().getMinutes();
+    var begin_hour=new Date().getHours();
+        $(".hour").css({"transform":"rotate("+(-(begin_hour+begin_min/60))*30+"deg)"}).css({"transition":"transform 1s"});
+         $(".hour .point").css({"transform":"rotate("+(begin_hour+begin_min/60)*30+"deg)"});
 
+        $(".hour").css({"webkitTransform":"rotate("+(-(begin_hour+begin_min/60))*30+"deg)"}).css({"webkitTransition":"transform 1s"});
+         $(".hour .point").css({"webkitTransform":"rotate("+(begin_hour+begin_min/60)*30+"deg)"});
+
+        $(".hour").css({"oTransform":"rotate("+(-(begin_hour+begin_min/60))*30+"deg)"}).css({"oTransition":"transform 1s"});
+         $(".hour .point").css({"transform":"rotate("+(begin_hour+begin_min/60)*30+"deg)"});
+
+        $(".hour").css({"mozTransform":"rotate("+(-(begin_hour+begin_min/60))*30+"deg)"}).css({"mozTransition":"transform 1s"});
+         $(".hour .point").css({"mozTransform":"rotate("+(begin_hour+begin_min/60)*30+"deg)"});
+
+        $(".hour").css({"msTransform":"rotate("+(-(begin_hour+begin_min/60))*30+"deg)"}).css({"msTransition":"msTransform 1s"});
+         $(".hour .point").css({"msTransform":"rotate("+(begin_hour+begin_min/60)*30+"deg)"});
+
+
+        $(".mins").css({"transform":"rotate("+(begin_min+begin_second/60)*6+"deg)"}).css({"transition":"transform .1s"});
+        $(".mins .point").css({"transform":"rotate("+ -(begin_min+begin_second/60)*6+"deg)"});
+
+        $(".mins").css({"webkitTransform":"rotate("+(begin_min+begin_second/60)*6+"deg)"}).css({"webkitTransition":"transform 1s"});
+        $(".mins .point").css({"webkitTransform":"rotate("+ -(begin_min+begin_second/60)*6+"deg)"});
+
+        $(".mins").css({"oTransform":"rotate("+(begin_min+begin_second/60)*6+"deg)"}).css({"oTransition":"transform 1s"});
+        $(".mins .point").css({"oTransform":"rotate("+ -(begin_min+begin_second/60)*6+"deg)"});
+
+        $(".mins").css({"mozTransform":"rotate("+(begin_min+begin_second/60)*6+"deg)"}).css({"mozTransition":"transform 1s"});
+        $(".mins .point").css({"mozTransform":"rotate("+ -(begin_min+begin_second/60)*6+"deg)"});
+
+        $(".mins").css({"msTransform":"rotate("+(begin_min+begin_second/60)*6+"deg)"}).css({"msTransition":"msTransform 1s"});
+        $(".mins .point").css({"msTransform":"rotate("+ -(begin_min+begin_second/60)*6+"deg)"});
+
+        $(".second").css({"transform":"rotate("+(-begin_second*6)+"deg)"}).css({"transition":"transform 1s"});
+        $(".second .point").css({"transform":"rotate("+begin_second*6+"deg)"});
+        $(".second").css({"webkiTransform":"rotate("+(-begin_second*6)+"deg)"}).css({"webkitTransition":"transform 1s"});
+        $(".second .point").css({"webkitTransform":"rotate("+begin_second*6+"deg)"});
+        $(".second").css({"oTransform":"rotate("+(-begin_second*6)+"deg)"}).css({"oTransition":"transform 1s"});
+        $(".second .point").css({"oTransform":"rotate("+begin_second*6+"deg)"});
+        $(".second").css({"mozTransform":"rotate("+(-begin_second*6)+"deg)"}).css({"mozTransition":"transform 1s"});
+        $(".second .point").css({"mozTransform":"rotate("+begin_second*6+"deg)"});
+        $(".second").css({"msTransform":"rotate("+(-begin_second*6)+"deg)"}).css({"msTransition":"msTransform 1s"});
+        $(".second .point").css({"msTransform":"rotate("+begin_second*6+"deg)"});
+
+}
+flagi=0;//为二维码计数；
 function run(){
     clearTimeout(timer);
     timer = null;
     var time=new Date();
-    var second=time.getSeconds();
+    var second;
+    if(time.getSeconds()==0){
+        second=60;
+    }else{
+        second=time.getSeconds();
+    }
     $("div.second").css({"transform":"rotate("+(-second*6)+"deg)"});
     $("div.second").css({"webkitTransform":"rotate("+(-second*6)+"deg)"});
     $("div.second").css({"oTransform":"rotate("+(-second*6)+"deg)"});
@@ -67,8 +121,19 @@ function run(){
     $(".hour .point").css({"oTransform":"rotate("+(hour*30)+"deg)"});
     $(".hour .point").css({"msTransform":"rotate("+(hour*30)+"deg)"});
     $(".hour .point").css({"mozTransform":"rotate("+(hour*30)+"deg)"});
+    var img=["img/erwei1.png","img/erwei2.png","img/erwei3.png"];
+        if(time.getSeconds()==0){
+            $("#mask>img").attr("src",img[(flagi>img.length?flagi=0:flagi++)]);
+            console.log(flagi);
+    }
+    if(time.getSeconds()>0&&time.getSeconds()<=10){
+        $("#mask").show("slow");
+    }else{
+        $("#mask").hide("slow");
+    }
 }
+beginMove();
 window.setInterval(run,1000);
-
+//$(".box").draggable();
 
 

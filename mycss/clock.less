@@ -1,17 +1,17 @@
-@hours_width:500px;
-@hours_color:#fff;
-@mins_width:.8*@hours_width;
-@mins_color:#A19A94;
-@seconds_width:.6*@hours_width;
-@seconds_color:#A42034;
-@display_area_width:20px;
-@display_area_height:@display_area_width*5;
+@hours_width:500px; //钟表直径
+@hours_color:#fff;//时针刻度颜色
+@mins_width:.8*@hours_width;//分针盘占 总盘比例
+@mins_color:#A19A94;//分针盘刻度颜色
+@seconds_width:.6*@hours_width; //秒针盘占 总盘比例
+@seconds_color:#A42034;//秒针盘刻度颜色
+@display_area_width:20px;//时间显示区的宽度
+@display_area_height:@hours_width*.25;//显示区长度
+@font-size:@hours_width/33px;//刻度字体大小
 .hour,.mins,.second,{
   position: absolute;
   border-radius: 50%;
   top:50%;
   left:50%;
-
 }
 .center{
   position: absolute;
@@ -22,7 +22,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    font-size: 15px;
+    font-size: @font-size;
     text-align: center;
     line-height: 20px;
     border-radius: 10px;
@@ -39,9 +39,9 @@
   height: @display_area_height;
   border: 1px solid #fff;
   background: rgba(255,255,255,.5);
-  z-index: 5;
+  z-index: 3;
   margin-left:-.5*@display_area_width;
-  margin-top:-2.5*@display_area_height;
+  margin-top:-2*@display_area_height;
 }
 .hour{
   width: @hours_width;
@@ -52,6 +52,22 @@
   z-index: 0;
   margin-left:-.5*@hours_width;
   margin-top:-.5*@hours_width;
+}
+#mask{
+  position: absolute;
+  top:50%;
+  left:50%;
+  width: @hours_width;
+  height: @hours_width;
+  background-position: center center;
+  background-size: cover;
+  z-index: 5;
+  margin-left:-.5*@hours_width;
+  margin-top:-.5*@hours_width;
+  background-color: rgba(255,255,255,.8);
+  img{
+   width:@hours_width;
+  }
 }
 .mins{
   width: @mins_width;
